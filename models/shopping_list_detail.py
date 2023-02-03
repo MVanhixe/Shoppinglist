@@ -9,8 +9,7 @@ class ShoppingListDetail(models.Model):
     remark = fields.Char('Remark', copy=False)
     list_id = fields.Many2one('shopping.list', required=True, copy=False, ondelete='cascade')
     status_list = fields.Char(compute='_compute_get_status', string='Status List')
-    user_created = fields.Many2one('res.partner', string='Created By', readonly=True,
-                                   default=lambda self: self.env.user)
+    user_created = fields.Many2one('res.users', string='Created By', default=lambda self: self.env.user)
 
     @api.model
     def create(self, vals):
