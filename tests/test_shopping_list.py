@@ -28,8 +28,17 @@ class ShoppingListTestCase(TransactionCase):
 
     def test_action_list(self):
         self.shoppinglistdetail.action_in_bag()
+        self.assertRecordValues(self.shoppinglist, [
+            {'state': 'in_progress'},
+        ])
+
+        if self.env['shopping.list'].search([('state', '=', 'new')]) != 0:
+            self.assertRaises(UserError)
 
         self.shoppinglist.action_set_finished()
         self.assertRecordValues(self.shoppinglist, [
             {'state': 'finished'},
         ])
+
+        if self.env['shopping.list'].search([('state', '=', 'new')]) == 0:
+            self.assertRaises(UserError)
