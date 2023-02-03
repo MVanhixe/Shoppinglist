@@ -9,6 +9,7 @@
                 <field name="in_bag" attrs="{'invisible': [('status_list', '=', 'on_hold')]}"/>
                 <field name="status_list" invisible="1" />
                 <field name="remark" />
+                <field name="user_created" optional="hide" />
             </tree>
         </field>
     </record>
