@@ -15,10 +15,6 @@ class ShoppingList(models.Model):
     detail_ids = fields.One2many('shopping.list.detail', 'list_id', string='Detail', copy=False, ondelete='cascade')
     active = fields.Boolean('Active', default=True)
 
-    @api.model
-    def name_create(self, newname):
-        return super().name_create(newname)
-
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         self.ensure_one()
